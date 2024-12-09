@@ -1,0 +1,22 @@
+[
+  {
+    "icon": "Leaf",
+    "name": "自律树",
+    "link": "https://sj.qq.com/appdetail/com.carporange.carptree"
+  },
+  {
+    "icon": "Book",
+    "name": "拍照读",
+    "link": "https://play.google.com/store/apps/details?id=com.micrograss.speakify"
+  },
+  {
+    "icon": "Book",
+    "name": "拍照读\nios",
+    "link": "https://apps.apple.com/us/app/snapvoice-image-to-speech/id6737799670"
+  },
+  {
+    "icon": "Qrcode",
+    "name": "易扫码\nios",
+    "link": "https://apps.apple.com/us/app/easycode-scanner-qr-barcode/id6738674173"
+  }
+]
