@@ -11,12 +11,17 @@
   },
   {
     "icon": "Book",
-    "name": "拍照读\nios",
+    "name": "拍照读ios",
     "link": "https://apps.apple.com/us/app/snapvoice-image-to-speech/id6737799670"
   },
   {
     "icon": "Qrcode",
-    "name": "易扫码\nios",
+    "name": "易扫码",
+    "link": "https://play.google.com/store/apps/details?id=com.micrograss.easycodescanner"
+  },
+  {
+    "icon": "Qrcode",
+    "name": "易扫码ios",
     "link": "https://apps.apple.com/us/app/easycode-scanner-qr-barcode/id6738674173"
   }
 ]
