@@ -5,7 +5,7 @@
     <div class="logo">
       <img class="logo-img" :src="siteLogo" alt="logo" />
       <div :class="{ name: true}">
-        <span class="bg">微草游方科技</span>
+        <span class="bg">鲤鱼的小站</span>
       </div>
     </div>
     <!-- 简介 -->

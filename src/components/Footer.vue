@@ -11,14 +11,12 @@
         </span>
          <!-- 公安备案 -->
         <span>
-          &amp;
           <a v-if="siteGongan" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51010502011747" target="_blank">
             {{ siteGongan }}
           </a>
         </span>
         <!-- 站点备案 -->
         <span>
-          &amp;
           <a v-if="siteIcp" href="https://beian.miit.gov.cn" target="_blank">
             {{ siteIcp }}
           </a>
