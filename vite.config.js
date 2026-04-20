@@ -8,9 +8,30 @@ import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import viteCompression from "vite-plugin-compression";
 
+const resolveBase = (siteUrl, mode) => {
+  if (mode !== "production" || !siteUrl) {
+    return "/";
+  }
+
+  const normalizedUrl = /^https?:\/\//.test(siteUrl) ? siteUrl : `https://${siteUrl}`;
+
+  try {
+    const { pathname } = new URL(normalizedUrl);
+    if (!pathname || pathname === "/") {
+      return "/";
+    }
+    return pathname.endsWith("/") ? pathname : `${pathname}/`;
+  } catch {
+    return "/";
+  }
+};
+
 // https://vitejs.dev/config/
-export default ({ mode }) =>
-  defineConfig({
+export default ({ mode }) => {
+  const env = loadEnv(mode, process.cwd());
+
+  return defineConfig({
+    base: resolveBase(env.VITE_SITE_URL, mode),
     plugins: [
       vue(),
       AutoImport({
@@ -120,3 +141,4 @@ export default ({ mode }) =>
       },
     },
   });
+};
