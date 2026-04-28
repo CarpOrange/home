@@ -36,7 +36,15 @@ import { mainStore } from "@/store";
 const store = mainStore();
 
 // 主页站点logo
-const siteLogo = import.meta.env.VITE_SITE_MAIN_LOGO;
+const siteLogo = import.meta.env.VITE_SITE_MAIN_LOGO || "/images/icon/logo.png";
+const defaultDescription = {
+  hello: import.meta.env.VITE_DESC_HELLO || "Hello World !",
+  text: import.meta.env.VITE_DESC_TEXT || "希望能让世界变得更好一点",
+};
+const boxDescription = {
+  hello: import.meta.env.VITE_DESC_HELLO_OTHER || "Oops !",
+  text: import.meta.env.VITE_DESC_TEXT_OTHER || "哎呀，这都被你发现了，再点一次可关闭",
+};
 // 站点链接
 const siteUrl = computed(() => {
   const url = import.meta.env.VITE_SITE_URL;
@@ -51,8 +59,8 @@ const siteUrl = computed(() => {
 
 // 简介区域文字
 const descriptionText = reactive({
-  hello: import.meta.env.VITE_DESC_HELLO,
-  text: import.meta.env.VITE_DESC_TEXT,
+  hello: defaultDescription.hello,
+  text: defaultDescription.text,
 });
 
 // 切换右侧功能区
@@ -76,11 +84,11 @@ watch(
   () => store.boxOpenState,
   (value) => {
     if (value) {
-      descriptionText.hello = import.meta.env.VITE_DESC_HELLO_OTHER;
-      descriptionText.text = import.meta.env.VITE_DESC_TEXT_OTHER;
+      descriptionText.hello = boxDescription.hello;
+      descriptionText.text = boxDescription.text;
     } else {
-      descriptionText.hello = import.meta.env.VITE_DESC_HELLO;
-      descriptionText.text = import.meta.env.VITE_DESC_TEXT;
+      descriptionText.hello = defaultDescription.hello;
+      descriptionText.text = defaultDescription.text;
     }
   },
 );
