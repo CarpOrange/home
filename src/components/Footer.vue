@@ -10,16 +10,16 @@
           </a>
         </span>
          <!-- 公安备案 -->
-        <span>
+        <span v-if="siteGongan">
           &amp;
-          <a v-if="siteGongan" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51010502011747" target="_blank">
+          <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51010502011747" target="_blank">
             {{ siteGongan }}
           </a>
         </span>
         <!-- 站点备案 -->
-        <span>
+        <span v-if="siteIcp">
           &amp;
-          <a v-if="siteIcp" href="https://beian.miit.gov.cn" target="_blank">
+          <a href="https://beian.miit.gov.cn" target="_blank">
             {{ siteIcp }}
           </a>
         </span>
@@ -51,8 +51,8 @@ const startYear = ref(
   import.meta.env.VITE_SITE_START?.length >= 4 ? 
   import.meta.env.VITE_SITE_START.substring(0, 4) : null
 );
-const siteIcp = ref(import.meta.env.VITE_SITE_ICP);
-const siteGongan = ref(import.meta.env.VITE_SITE_GONGAN);
+const siteIcp = ref(import.meta.env.VITE_SITE_ICP || "蜀ICP备2023007642号");
+const siteGongan = ref(import.meta.env.VITE_SITE_GONGAN || "川公网安备51010502011747号");
 const siteAuthor = ref(import.meta.env.VITE_SITE_AUTHOR);
 const siteUrl = computed(() => {
   const url = import.meta.env.VITE_SITE_URL;
