@@ -23,5 +23,10 @@
     "icon": "Qrcode",
     "name": "易扫码ios",
     "link": "https://apps.apple.com/us/app/easycode-scanner-qr-barcode/id6738674173"
+  },
+  {
+    "icon": "Book",
+    "name": "单词大冒险",
+    "link": "#/word-adventure"
   }
 ]

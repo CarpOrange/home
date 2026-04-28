@@ -72,6 +72,8 @@ const siteIcon = {
 const jumpLink = (data) => {
   if (data.name === "音乐" && store.musicClick) {
     if (typeof $openList === "function") $openList();
+  } else if (data.link?.startsWith("#") || data.link?.startsWith("/")) {
+    window.location.href = data.link;
   } else {
     window.open(data.link, "_blank");
   }

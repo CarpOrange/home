@@ -5,7 +5,13 @@
   <Background @loadComplete="loadComplete" />
   <!-- 主界面 -->
   <Transition name="fade" mode="out-in">
-    <main id="main" v-if="store.imgLoadStatus">
+    <main id="main" :class="{ subpage: isWordAdventurePage }" v-if="store.imgLoadStatus">
+      <WordAdventure
+        v-if="isWordAdventurePage"
+        :initial-section="wordAdventureSection"
+        @back-home="goHome"
+      />
+      <template v-else>
       <div class="container" v-show="!store.backgroundShow">
         <section class="all" v-show="!store.setOpenState">
           <MainLeft />
@@ -29,6 +35,7 @@
       <Transition name="fade" mode="out-in">
         <Footer class="f-ter" v-show="!store.backgroundShow && !store.setOpenState" />
       </Transition>
+      </template>
     </main>
   </Transition>
 </template>
@@ -45,10 +52,42 @@ import Background from "@/components/Background.vue";
 import Footer from "@/components/Footer.vue";
 import Box from "@/views/Box/index.vue";
 import MoreSet from "@/views/MoreSet/index.vue";
+import WordAdventure from "@/views/WordAdventure/index.vue";
 import cursorInit from "@/utils/cursor.js";
 import config from "@/../package.json";
 
 const store = mainStore();
+const currentRoute = ref("");
+
+const syncRoute = () => {
+  currentRoute.value = `${window.location.pathname}${window.location.hash}`;
+};
+
+const isWordAdventurePage = computed(() => {
+  const path = window.location.pathname.replace(/\/$/, "");
+  return (
+    currentRoute.value.includes("#/word-adventure") ||
+    path.endsWith("/word-adventure") ||
+    path.endsWith("/adventure-preview") ||
+    path.endsWith("/adventure-features")
+  );
+});
+
+const wordAdventureSection = computed(() => {
+  const path = window.location.pathname.replace(/\/$/, "");
+  if (path.endsWith("/adventure-preview")) return "adventure-preview";
+  if (path.endsWith("/adventure-features")) return "adventure-features";
+  return "";
+});
+
+const goHome = () => {
+  if (window.location.hash === "#/word-adventure") {
+    history.pushState(null, "", window.location.pathname + window.location.search);
+  } else {
+    history.pushState(null, "", "/");
+  }
+  syncRoute();
+};
 
 // 页面宽度
 const getWidth = () => {
@@ -77,6 +116,10 @@ watch(
 );
 
 onMounted(() => {
+  syncRoute();
+  window.addEventListener("hashchange", syncRoute);
+  window.addEventListener("popstate", syncRoute);
+
   // 自定义鼠标
   cursorInit();
 
@@ -123,6 +166,8 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   window.removeEventListener("resize", getWidth);
+  window.removeEventListener("hashchange", syncRoute);
+  window.removeEventListener("popstate", syncRoute);
 });
 </script>
 
@@ -137,6 +182,9 @@ onBeforeUnmount(() => {
   transition: transform 0.3s;
   animation: fade-blur-main-in 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   animation-delay: 0.5s;
+  &.subpage {
+    overflow: hidden;
+  }
   .container {
     width: 100%;
     height: 100vh;
