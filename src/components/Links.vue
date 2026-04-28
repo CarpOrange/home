@@ -43,7 +43,7 @@
 <script setup>
 import { Icon } from "@vicons/utils";
 // 可前往 https://www.xicons.org 自行挑选并在此处引入
-import { Leaf, Book, Qrcode } from "@vicons/fa"; // 注意使用正确的类别
+import { Leaf, Book, Qrcode, Gamepad } from "@vicons/fa"; // 注意使用正确的类别
 import { mainStore } from "@/store";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Pagination, Mousewheel } from "swiper/modules";
@@ -65,7 +65,8 @@ const siteLinksList = computed(() => {
 const siteIcon = {
   Leaf,
   Book,
-  Qrcode
+  Qrcode,
+  Gamepad
 };
 
 // 链接跳转
